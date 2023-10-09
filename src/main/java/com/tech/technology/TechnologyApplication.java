@@ -9,7 +9,5 @@ public class TechnologyApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(TechnologyApplication.class, args);
 	}
-  public void helo() {
-	  System.out.println("hoo");
-  }
+ 
 }
