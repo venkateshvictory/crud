@@ -1,5 +1,6 @@
 package com.tech.technology.serviceImpl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -33,14 +34,14 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public String deleteById(Long id) {
-		
+
 		customerRepository.deleteById(id);
-		if(customerRepository.findById(id).isPresent()) {
+		if (customerRepository.findById(id).isPresent()) {
 			return "still customer present";
 		}
-	
+
 		return "SUCCESSFULLY DELETED CUSTOMER FROM OUR DATA BASE";
- 
+
 	}
 
 	@Override
@@ -50,8 +51,26 @@ public class CustomerServiceImpl implements CustomerService {
 		customerData.setFirstName(customer.getFirstName());
 		customerData.setLastName(customer.getLastName());
 		customerData.setPhoneNumber(customer.getPhoneNumber());
-        customerRepository.save(customerData);
+		customerRepository.save(customerData);
 		return customerData;
+	}
+
+	@Override
+	public List<Customer> verifyUserDetails(String email, String password) {
+		return customerRepository.verifyUserDetails(email, password);
+
+	}
+
+	@Override
+	public Customer findByEmail(String email) {
+
+		return customerRepository.findByEmail(email);
+	}
+
+	@Override
+	public Customer findByPassword(String password) {
+
+		return customerRepository.findByPassword(password);
 	}
 
 }
